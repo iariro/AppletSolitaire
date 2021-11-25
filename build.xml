@@ -1,0 +1,38 @@
+<project default="zip">
+
+	<!-- Applet Solitaire build.xml -->
+
+	<property file="../../../../../../build.properties" />
+
+	<target name="zip">
+		<zip
+			destfile="${PDA_HOME}/Temp/AppletSolitaire.zip"
+			basedir=".."
+			includes="project/**"
+			excludes="project/bin/**" />
+	</target>
+
+	<target name="codeguess">
+		<taskdef name="codeguess" classname="kumagai.codeguess.CodeGuessTask" classpath="${JAVAPROJECTCHECKER_LIB}" />
+		<codeguess targetfilepath="src/" >
+			<exclude extension="java" code="UTF-8" />
+		</codeguess>
+	</target>
+
+	<target name="javadoc">
+		<javadoc
+			destdir="../javadoc"
+			sourcepath="src"
+			encoding="utf-8"
+			classpath="${XALAN_LIB};${KTOOL_LIB};${SERVLET_LIB};${STRUTS_LIB};${JUNIT_LIB};${SQLSERVER_JDBC_LIB}">
+		</javadoc>
+	</target>
+
+	<target name="solitaire">
+		<java
+			classname="kumagai.solitaire.SolitaireMain"
+			classpath="bin">
+		</java>
+	</target>
+
+</project>
